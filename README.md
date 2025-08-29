@@ -1,7 +1,9 @@
 # zepto-with-sql
-zepto end to end project with sql, following with technical questions and providing a clear insight for the client 
-create table zepto(
+zepto end to end project with sql, following with technical questions and providing a clear insight for the client
 
+Schema
+```
+create table zepto(
 sku_id SERIAL PRIMARY KEY,
 CATEGORY VARCHAR(100),
 name VARCHAR(100) NOT NULL,
@@ -13,44 +15,52 @@ weightInGms	INTEGER,
 outOfStock BOOLEAN,
 quantity INTEGER
 )
-
+```
 --DATA EXPLOARTION
+```
 SELECT * FROM ZEPTO;
-
+```
 --COUNT OF THE TABLE
+```
 SELECT COUNT(*)FROM ZEPTO;
-``
+```
 --NULL VALUES
+```
 SELECT * FROM ZEPTO
 WHERE NAME IS NULL
-
+```
 --UPDATING PAISE INTO RUPESS
+```
 UPDATE ZEPTO
 SET MRP = MRP / 100.00,
 DISCOUNTEDSELLINGPRICE = DISCOUNTEDSELLINGPRICE / 100.00 
-
 SELECT MRP, DISCOUNTEDSELLINGPRICE FROM ZEPTO
-
+```
 --FINDING CATEGORIES
+```
 SELECT DISTINCT CATEGORY
 FROM ZEPTO
 ORDER BY CATEGORY
-
+```
 --PRODUCT IN STOCK VS OUTOFSTOCK
+```
 SELECT OUTOFSTOCK, COUNT(SKU_ID)
 FROM ZEPTO
 GROUP BY OUTOFSTOCK; 
-
+```
 --ANALYZING MRP AND DISCONT PERCENT 
+```
 SELECT MRP,DiscountPercent
 FROM ZEPTO
 ORDER BY MRP,DiscountPercent DESC
-
+```
 --SUMMATION OF TOTAL MRP AND DISCOUNTPERCENT
+```
 SELECT SUM(MRP) AS MRP ,SUM(DiscountPercent)  AS DiscountPercent
 FROM ZEPTO;
-
+```
 --most sold category with available quatity,total products
+```
 SELECT Category,
     SUM(MRP) AS Total_MRP ,
     SUM(AVAILABLEQUANTITY) AS AVAILABLEQUANTITY,
@@ -58,28 +68,29 @@ SELECT Category,
 FROM ZEPTO
 GROUP BY Category 
 ORDER BY Total_Products DESC;
-
+```
 -- COUNT OF PRODUCT NAME AND STOCK KEEPING UNITS
+```
 SELECT NAME, COUNT(SKU_ID) AS " NO OF SKU'S"
 FROM ZEPTO
 GROUP BY NAME
 HAVING COUNT(SKU_ID)>1
 ORDER BY COUNT(SKU_ID) DESC
-
+```
 --FINDING IF ANY PRODUCT AS PRICE OF 0
+```
 SELECT*FROM ZEPTO
 WHERE MRP=0 OR DISCOUNTEDSELLINGPRICE= 0
-
+```
 --DELETING TABLES WITH PRICE 0
+```
 DELETE FROM ZEPTO
 WHERE SKU_ID = 3607
-
 SELECT DISTINCT NAME, WEIGHTINGMS
 FROM ZEPTO
 ORDER BY WEIGHTINGMS DESC;
-
 select mrp,discountedsellingprice from zepto
-
+```
 
 --q1 list the top 10 products with most discountpercent 
 select name,mrp,discountpercent
