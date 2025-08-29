@@ -1,5 +1,5 @@
 # zepto-with-sql
-![]()
+![](https://github.com/Mukthar-07/zepto-with-sql/blob/main/zepto%20logo.jpeg)
 zepto end to end project with sql, following with technical questions and providing a clear insight for the client
 
 Schema
